@@ -1,0 +1,87 @@
+<div class="squadra-detail-container">
+  <div class="header">
+    <h2>{{nomeSquadra}}</h2>
+    <button mat-stroked-button color="accent" (click)="tornaAllaDashboard()">
+      ← Torna alla dashboard
+    </button>
+  </div>
+
+  <!-- Staff -->
+  <section class="staff-section">
+    <div class="section-header">
+      <h2>Staff Tecnico</h2>
+      <button mat-icon-button color="primary" (click)="addStaff()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <div class="staff-list">
+      @for (staff of staffList; track staff.id) {
+        <div class="staff-item" [class.selected]="isStaffSelected(staff.id)" (click)="toggleStaffSelection(staff.id)">
+          <div class="staff-info">
+            <mat-checkbox
+              [checked]="isStaffSelected(staff.id)"
+              (click)="$event.stopPropagation()"
+              (change)="toggleStaffSelection(staff.id)">
+            </mat-checkbox>
+
+            <div class="staff-nome">
+              <strong>{{ staff.type }} - {{ staff.nome }}</strong>
+            </div>
+          </div>
+
+          <!-- Bottone dettaglio -->
+          <button mat-icon-button color="accent" (click)="$event.stopPropagation(); editStaff(staff.id)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Calciatori -->
+  <section class="calciatori-section">
+    <div class="section-header">
+      <h2>Calciatori</h2>
+      <button mat-icon-button color="accent" (click)="addCalciatore()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <div class="calciatori-list">
+      @for (calciatore of calciatoriList; track calciatore.id) {
+        <div class="calciatore-item" [class.selected]="isCalciatoreSelected(calciatore.id)" (click)="toggleCalciatoreSelection(calciatore.id)">
+          <div class="calciatore-info-wrapper">
+            <mat-checkbox
+              [checked]="isCalciatoreSelected(calciatore.id)"
+              (click)="$event.stopPropagation()"
+              (change)="toggleCalciatoreSelection(calciatore.id)">
+            </mat-checkbox>
+
+            <div class="calciatore-dettagli">
+              <div class="calciatore-nome">
+                <strong>#{{ calciatore.numeroMaglia }} - {{ calciatore.nome }}</strong>
+              </div>
+              <div class="calciatore-info">
+                <p><strong>Cartellini:</strong> {{ calciatore.cartellini }}</p>
+                <p><strong>Scadenza Visita:</strong> {{ calciatore.scadenzaVisitaMedica }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottone dettaglio -->
+          <button mat-icon-button color="primary" (click)="$event.stopPropagation(); editCalciatore(calciatore.id)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Pulsante finale -->
+  <div class="note-gara-footer">
+    <button mat-raised-button color="primary" [disabled]="!canGenerateNoteGara()" (click)="generateNoteGara()">
+      Genera Note Gara
+    </button>
+  </div>
+</div>

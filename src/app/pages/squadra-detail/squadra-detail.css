@@ -1,0 +1,140 @@
+.squadra-detail-container {
+  padding: 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+  color: #1976d2;
+}
+
+/* Sezioni */
+.staff-section,
+.calciatori-section {
+  margin-bottom: 3rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Liste */
+.staff-list,
+.calciatori-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Elementi cliccabili */
+.staff-item,
+.calciatore-item {
+  display: flex;
+  align-items: center; /* centrati verticalmente */
+  justify-content: space-between; /* contenuto a sx e bottone a dx */
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.staff-item:hover,
+.calciatore-item:hover {
+  background-color: #f0f0f0;
+}
+
+.selected {
+  border: 2px solid #1976d2;
+  background-color: #e3f2fd;
+}
+
+/* Contenuto a sinistra */
+.staff-info,
+.calciatore-info-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1; /* occupa tutto lo spazio a sinistra */
+}
+
+/* Nome staff */
+.staff-nome {
+  font-size: 1rem;
+  color: #1976d2;
+}
+
+/* Dettagli calciatori */
+.calciatore-dettagli {
+  display: flex;
+  flex-direction: column;
+}
+
+.calciatore-nome {
+  font-size: 1rem;
+  color: #1976d2;
+  margin-bottom: 0.25rem;
+}
+
+.calciatore-info p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+}
+
+/* Pulsante sempre a destra */
+.staff-item button,
+.calciatore-item button {
+  margin-left: auto;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .nome-squadra {
+    font-size: 1.6rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .staff-item,
+  .calciatore-item {
+    padding: 0.75rem;
+  }
+
+  .staff-nome,
+  .calciatore-nome {
+    font-size: 0.95rem;
+  }
+
+  .staff-info p,
+  .calciatore-info p {
+    font-size: 0.85rem;
+  }
+}
+
+.note-gara-footer {
+  margin-top: 3rem;
+  text-align: center;
+}

@@ -1,0 +1,38 @@
+<div class="staff-detail-container mat-elevation-z2">
+  <div class="header">
+    <h2>{{ mode === 'create' ? 'Nuovo Staff' : 'Modifica Staff' }}</h2>
+    <button mat-stroked-button color="accent" (click)="tornaAllaSquadra()">
+      ← Torna alla squadra
+    </button>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="salva()" class="form-layout">
+    <div class="form-fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Ruolo</mat-label>
+        <input matInput formControlName="type" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo Documento</mat-label>
+        <input matInput formControlName="tipoDocumento" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Numero Documento</mat-label>
+        <input matInput formControlName="numeroDocumento" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit">
+        {{ mode === 'create' ? 'Salva' : 'Aggiorna' }}
+      </button>
+    </div>
+  </form>
+</div>

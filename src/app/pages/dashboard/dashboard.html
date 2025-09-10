@@ -1,0 +1,9 @@
+<div class="dashboard-list">
+  @for (team of teams; track team.id) {
+    <mat-card class="team-list-item" (click)="goToTeamDetail(team.id)">
+      <mat-card-header class="team-header">
+        <mat-card-title>{{ team.name }}</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+  }
+</div>
