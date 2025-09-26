@@ -15,7 +15,7 @@ export const routes: Routes = [
     component: Dashboard
   },
   {
-    path: 'squadra/:id',
+    path: 'squadra/:teamId',
     component: SquadraDetail
   },
   {

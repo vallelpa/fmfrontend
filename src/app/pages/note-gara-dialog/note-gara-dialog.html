@@ -1,0 +1,47 @@
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Nome Evento</mat-label>
+    <input matInput formControlName="nomeEvento" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Squadra Avversaria</mat-label>
+    <input matInput formControlName="squadraAvversaria" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Data Evento</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dataEvento" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-radio-group formControlName="tipo" class="radio-group">
+    <mat-radio-button value="casa">In casa</mat-radio-button>
+    <mat-radio-button value="trasferta">Fuori casa</mat-radio-button>
+  </mat-radio-group>
+
+  <div formArrayName="dirigenti" class="dirigenti-section">
+    <div *ngFor="let gruppo of dirigentiFormArray.controls; let i = index" [formGroupName]="i" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+      <span style="min-width: 150px;">{{ dirigenti[i].nome }}</span>
+
+      <ng-container>
+        <mat-form-field appearance="fill" style="flex: 1;">
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="tipo">
+            <mat-option *ngFor="let tipo of tipiStaffDirigente" [value]="tipo">
+              {{ getEtichetta(tipo) }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="chiudi()">Annulla</button>
+  <button mat-raised-button color="primary" (click)="generaNote()" [disabled]="!formValido()">
+    Conferma
+  </button>
+</mat-dialog-actions>

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {Staff} from '../../models/staff.model';
 
 @Component({
   selector: 'app-staff-detail',
@@ -32,17 +33,21 @@ export class StaffDetail {
   });
 
   constructor() {
-    const state = this.location.getState() as { mode?: 'create' | 'edit'; id?: number };
+    // Recupera lo state dalla navigazione
+    const state = this.location.getState() as {
+      mode?: 'create' | 'edit';
+      staff?: Staff;
+      teamId?: number;
+    };
     this.mode = state.mode ?? 'create';
-    this.staffId = state.id;
+    // this.teamId = state.teamId ?? 0;
 
-    if (this.mode === 'edit' && this.staffId) {
-      // Simula caricamento dati
+    if (this.mode === 'edit' && state.staff) {
       this.form.patchValue({
-        type: 'ALLENATORE',
-        nome: 'Mirko Massi',
-        tipoDocumento: 'CI',
-        numeroDocumento: 'AB123456'
+        type: state.staff.tipo,
+        nome: state.staff.nome,
+        tipoDocumento: state.staff.tipoDocumento,
+        numeroDocumento: state.staff.numeroDocumento
       });
     }
   }

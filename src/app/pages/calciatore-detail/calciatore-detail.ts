@@ -44,21 +44,24 @@ export class CalciatoreDetail {
   });
 
   constructor() {
-    const state = this.location.getState() as { mode?: 'create' | 'edit'; id?: number };
+    const state = this.location.getState() as {
+      mode?: 'create' | 'edit';
+      calciatore?: Calciatore;
+      teamId?: number;
+    };
     this.mode = state.mode ?? 'create';
-    this.calciatoreId = state.id;
+    // this.teamId = state.teamId ?? 0;
 
-    if (this.mode === 'edit' && this.calciatoreId) {
-      // Simula caricamento dati
+    if (this.mode === 'edit' && state.calciatore) {
       this.form.patchValue({
-        numeroMaglia: 10,
-        nome: 'Juber Bertocci',
-        cartellini: 2,
-        scadenzaVisitaMedica: '2025-11-30',
-        dataNascita: '2000-04-15',
-        matricolaFigc: 'FIGC001',
-        tipoDocumento: 'CI',
-        numeroDocumento: 'AA112233'
+        numeroMaglia: state.calciatore.numeroMaglia,
+        nome: state.calciatore.nome,
+        cartellini: state.calciatore.cartellini,
+        scadenzaVisitaMedica: state.calciatore.scadenzaVisitaMedica,
+        dataNascita: state.calciatore.dataNascita,
+        matricolaFigc: state.calciatore.matricolaFigc,
+        tipoDocumento: state.calciatore.tipoDocumento,
+        numeroDocumento: state.calciatore.numeroDocumento
       });
     }
   }

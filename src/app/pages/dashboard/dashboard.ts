@@ -1,12 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {MatCard, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
+import {MatCard, MatCardHeader, MatCardTitle} from '@angular/material/card';
+import {HttpClient} from '@angular/common/http';
 
-interface Team {
-  id: number;
-  name: string;
-  imageUrl: string;
-}
 
 @Component({
   selector: 'app-dashboard',
@@ -18,19 +14,31 @@ interface Team {
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
-export class Dashboard {
+export class Dashboard implements OnInit {
 
-  teams: Team[] = [
-    { id: 1, name: 'Prima Squadra', imageUrl: './assets/logo,png' },
-    { id: 2, name: 'Under 21', imageUrl: './assets/logo,png'},
-  ];
+  teams: Team[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.loadTeams();
+  }
+
+  loadTeams(): void {
+    this.http.get<Team[]>('https://fmbackend-cend.onrender.com/api/squadra').subscribe({
+      next: (data) => this.teams = data,
+      error: (err) => console.error('Errore caricamento teams', err)
+    });
+  }
 
   goToTeamDetail(teamId: number) {
     const team = this.teams.find(t => t.id === teamId);
+    if (!team) return;
     this.router.navigate(['/squadra', teamId], {
-      state: { teamName: team?.name }
+      state: {
+        teamName: team.name,
+        campionato: team.campionato
+      }
     });
   }
 

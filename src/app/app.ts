@@ -1,10 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import {Component, signal} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -16,7 +17,8 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

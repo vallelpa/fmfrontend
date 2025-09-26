@@ -6,39 +6,6 @@
     </button>
   </div>
 
-  <!-- Staff -->
-  <section class="staff-section">
-    <div class="section-header">
-      <h2>Staff Tecnico</h2>
-      <button mat-icon-button color="primary" (click)="addStaff()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-
-    <div class="staff-list">
-      @for (staff of staffList; track staff.id) {
-        <div class="staff-item" [class.selected]="isStaffSelected(staff.id)" (click)="toggleStaffSelection(staff.id)">
-          <div class="staff-info">
-            <mat-checkbox
-              [checked]="isStaffSelected(staff.id)"
-              (click)="$event.stopPropagation()"
-              (change)="toggleStaffSelection(staff.id)">
-            </mat-checkbox>
-
-            <div class="staff-nome">
-              <strong>{{ staff.type }} - {{ staff.nome }}</strong>
-            </div>
-          </div>
-
-          <!-- Bottone dettaglio -->
-          <button mat-icon-button color="accent" (click)="$event.stopPropagation(); editStaff(staff.id)">
-            <mat-icon>visibility</mat-icon>
-          </button>
-        </div>
-      }
-    </div>
-  </section>
-
   <!-- Calciatori -->
   <section class="calciatori-section">
     <div class="section-header">
@@ -78,10 +45,47 @@
     </div>
   </section>
 
-  <!-- Pulsante finale -->
+  <!-- Staff -->
+  <section class="staff-section">
+    <div class="section-header">
+      <h2>Staff Tecnico</h2>
+      <button mat-icon-button color="primary" (click)="addStaff()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <div class="staff-list">
+      @for (staff of staffList; track staff.id) {
+        <div class="staff-item" [class.selected]="isStaffSelected(staff.id)" (click)="toggleStaffSelection(staff.id)">
+          <div class="staff-info">
+            <mat-checkbox
+              [checked]="isStaffSelected(staff.id)"
+              (click)="$event.stopPropagation()"
+              (change)="toggleStaffSelection(staff.id)">
+            </mat-checkbox>
+
+            <div class="staff-nome">
+              <strong>{{ staff.tipo || 'Dirigente' }} - {{ staff.nome }}</strong>
+            </div>
+          </div>
+
+          <!-- Bottone dettaglio -->
+          <button mat-icon-button color="accent" (click)="$event.stopPropagation(); editStaff(staff.id)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </section>
+
   <div class="note-gara-footer">
-    <button mat-raised-button color="primary" [disabled]="!canGenerateNoteGara()" (click)="generateNoteGara()">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!canGenerateNoteGara()"
+      (click)="openNoteGaraDialog()">
       Genera Note Gara
     </button>
   </div>
 </div>
+
