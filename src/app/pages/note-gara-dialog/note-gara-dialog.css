@@ -1,0 +1,74 @@
+:host {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Titolo centrato */
+::ng-deep h2[mat-dialog-title] {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+/* Contenuto della modale con scroll verticale */
+::ng-deep mat-mdc-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  max-height: 70vh;
+  overflow-y: auto !important; /* ✅ scroll verticale abilitato */
+  box-sizing: border-box;
+}
+
+/* Campo input a larghezza piena */
+mat-form-field {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Radio button centrati */
+.radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* Pulsanti centrati */
+mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  flex-wrap: wrap;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  ::ng-deep mat-mdc-dialog-content {
+    padding: 16px;
+    max-height: 75vh;
+  }
+
+  ::ng-deep h2[mat-dialog-title] {
+    font-size: 1.2rem;
+  }
+
+  mat-form-field {
+    max-width: 100%;
+  }
+
+  .radio-group {
+    gap: 16px;
+  }
+
+  mat-dialog-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}

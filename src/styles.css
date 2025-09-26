@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Modale Note Gara: contenuto scrollabile */
+.note-gara-dialog-panel .mat-mdc-dialog-content {
+  overflow-y: auto !important;   /* ✅ abilita scroll verticale */
+  overflow-x: hidden !important; /* evita scroll orizzontale */
+  max-height: 65vh !important;   /* altezza massima visibile */
+  padding: 24px;                 /* spazio interno coerente */
+  box-sizing: border-box;
+}
