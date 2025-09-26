@@ -13,15 +13,18 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/fmfrontend",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              { "glob": "**/*", "input": "public", "output": "/" }
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
             ],
             "styles": [
               "src/custom-theme.scss",
@@ -36,24 +39,30 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1MB",
+                  "maximumError": "2MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
             },
             "development": {
               "optimization": false,
-              "sourceMap": true,
-              "extractCss": false
+              "extractLicenses": false,
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
-          "options": {
-            "proxyConfig": "proxy.conf.json"
-          },
           "configurations": {
             "production": {
               "buildTarget": "fmfrontend:build:production"
@@ -65,14 +74,28 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular/build:extract-i18n",
-          "options": {
-            "browser": "src/main.ts",
-            "tsConfig": "tsconfig.app.json"
-          }
+          "builder": "@angular/build:extract-i18n"
         },
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
-            "
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.css"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
