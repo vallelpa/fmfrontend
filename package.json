@@ -6,7 +6,8 @@
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:gh": "ng build --configuration production --base-href='https://vallelpa.github.io/fmfrontend/'"
   },
   "prettier": {
     "printWidth": 100,
