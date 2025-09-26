@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatCard, MatCardHeader, MatCardTitle} from '@angular/material/card';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class Dashboard implements OnInit {
   }
 
   loadTeams(): void {
-    this.http.get<Team[]>('https://fmbackend-cend.onrender.com/api/squadra').subscribe({
+    this.http.get<Team[]>(`${environment.apiHost}/api/squadra`).subscribe({
       next: (data) => this.teams = data,
       error: (err) => console.error('Errore caricamento teams', err)
     });

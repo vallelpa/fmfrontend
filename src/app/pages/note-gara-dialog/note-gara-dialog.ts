@@ -11,6 +11,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {ETICHETTE_TIPO_STAFF, Staff, TipoStaff, TUTTI_TIPI_STAFF} from '../../models/staff.model';
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/material/datepicker';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-note-gara-dialog',
@@ -121,7 +122,7 @@ export class NoteGaraDialog implements OnInit {
       staff: staff
     };
 
-    this.http.post('https://fmbackend-cend.onrender.com/api/notegara/genera', result, {
+    this.http.post(`${environment.apiHost}/api/notegara/genera`, result, {
       observe: 'response',
       responseType: 'blob'
     }).subscribe({

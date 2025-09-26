@@ -3,6 +3,8 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { SquadraDetail } from './pages/squadra-detail/squadra-detail';
 import { CalciatoreDetail } from './pages/calciatore-detail/calciatore-detail';
 import {StaffDetail} from './pages/staff-detail/staff-detail';
+import {Login} from './pages/login/login';
+import {authGuard} from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -11,23 +13,33 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    component: Login
+  },
+  {
     path: 'dashboard',
-    component: Dashboard
+    component: Dashboard,
+    canActivate: [authGuard]
   },
   {
     path: 'squadra/:teamId',
-    component: SquadraDetail
+    component: SquadraDetail,
+    canActivate: [authGuard]
   },
   {
     path: 'calciatore-detail',
-    component: CalciatoreDetail
+    component: CalciatoreDetail,
+    canActivate: [authGuard]
   },
   {
     path: 'staff-detail',
-    component: StaffDetail
+    component: StaffDetail,
+    canActivate: [authGuard]
   },
   {
     path: '**',
     redirectTo: 'dashboard'
   }
 ];
+
+

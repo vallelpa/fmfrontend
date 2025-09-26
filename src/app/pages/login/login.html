@@ -1,0 +1,18 @@
+<mat-card class="login-card">
+  <h2 class="login-title">Accedi</h2>
+  <form [formGroup]="form" (ngSubmit)="login()" class="login-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="login-button">
+      Accedi
+    </button>
+  </form>
+</mat-card>

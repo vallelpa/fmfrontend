@@ -9,6 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {HttpClient} from '@angular/common/http';
 import {Staff} from '../../models/staff.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-squadra-detail',
@@ -57,7 +58,7 @@ export class SquadraDetail implements OnInit {
 
 
   loadStaff() {
-    this.http.get<Staff[]>(`https://fmbackend-cend.onrender.com/api/squadra/${this.teamId}/staff`)
+    this.http.get<Staff[]>(`${environment.apiHost}/api/squadra/${this.teamId}/staff`)
       .subscribe({
         next: data => this.staffList = data,
         error: err => console.error('Errore caricamento staff', err)
@@ -65,7 +66,7 @@ export class SquadraDetail implements OnInit {
   }
 
   loadCalciatori() {
-    this.http.get<Calciatore[]>(`https://fmbackend-cend.onrender.com/api/squadra/${this.teamId}/calciatori`)
+    this.http.get<Calciatore[]>(`${environment.apiHost}/api/squadra/${this.teamId}/calciatori`)
       .subscribe({
         next: data => this.calciatoriList = data,
         error: err => console.error('Errore caricamento calciatori', err)

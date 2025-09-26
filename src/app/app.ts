@@ -1,11 +1,12 @@
 import {Component, signal} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {AuthService} from './services/auth.service';
 
 
 @Component({
@@ -26,11 +27,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 export class App {
   protected readonly title = signal('Futsal Montevarchi');
 
-  /*  goToProfile() {
-      this.router.navigate(['/profile']);
-    }
+  constructor(private auth: AuthService, private router: Router) {}
 
-    logout() {
-      // logica di logout
-    }*/
+  logout() {
+    this.auth.logout();           // rimuove il token
+    this.router.navigate(['/login']); // redirect alla pagina di login
+  }
 }
