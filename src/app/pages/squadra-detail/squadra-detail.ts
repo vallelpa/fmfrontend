@@ -118,10 +118,10 @@ export class SquadraDetail implements OnInit {
   toggleStaffSelection(id: number) {
     if (this.selectedStaffIds.includes(id)) {
       this.selectedStaffIds = this.selectedStaffIds.filter(sid => sid !== id);
-    } else if (this.selectedStaffIds.length < 4) {
+    } else if (this.selectedStaffIds.length < 5) {
       this.selectedStaffIds.push(id);
     } else {
-      this.snackBar.open('Puoi selezionare al massimo 4 membri dello staff.', 'Chiudi', {
+      this.snackBar.open('Puoi selezionare al massimo 5 membri dello staff.', 'Chiudi', {
         duration: 3000
       });
     }

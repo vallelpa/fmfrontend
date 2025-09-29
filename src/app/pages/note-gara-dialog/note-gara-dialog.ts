@@ -12,6 +12,7 @@ import {ETICHETTE_TIPO_STAFF, Staff, TipoStaff, TUTTI_TIPI_STAFF} from '../../mo
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/material/datepicker';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-note-gara-dialog',
@@ -30,15 +31,17 @@ import {environment} from '../../../environments/environment';
     FormsModule,
     MatDatepickerInput,
     MatDatepicker,
-    MatDatepickerToggle
+    MatDatepickerToggle,
+    MatProgressSpinnerModule
   ],
   templateUrl: './note-gara-dialog.html'
 })
 export class NoteGaraDialog implements OnInit {
   form: FormGroup;
   dirigenti: Staff[] = [];
-
   tipiStaffDirigente: TipoStaff[] = TUTTI_TIPI_STAFF;
+  loading = false;
+
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
@@ -102,6 +105,7 @@ export class NoteGaraDialog implements OnInit {
   }
 
   generaNote(): void {
+    this.loading = true;
     const staff = this.dirigentiFormArray.value.map((d: any) => ({
       id: d.id,
       tipo: d.tipo
@@ -127,6 +131,7 @@ export class NoteGaraDialog implements OnInit {
       responseType: 'blob'
     }).subscribe({
       next: (res) => {
+        this.loading = false;
         const contentDisposition = res.headers.get('Content-Disposition');
         const filenameMatch = contentDisposition?.match(/filename="(.+)"/);
         const filename = filenameMatch ? filenameMatch[1] : 'note-gara.docx';
@@ -142,7 +147,7 @@ export class NoteGaraDialog implements OnInit {
       },
       error: (err) => {
         console.error('Errore nella generazione:', err);
-        alert('Errore durante la generazione delle note gara.');
+        alert('Errore durante la generazione delle note gara');
       }
     });
   }

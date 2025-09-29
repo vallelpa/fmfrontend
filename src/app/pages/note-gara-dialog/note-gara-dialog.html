@@ -16,7 +16,7 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <mat-radio-group formControlName="tipo" class="radio-group">
+  <mat-radio-group formControlName="tipo" class="radio-group" style="margin-bottom: 1rem;">
     <mat-radio-button value="casa">In casa</mat-radio-button>
     <mat-radio-button value="trasferta">Fuori casa</mat-radio-button>
   </mat-radio-group>
@@ -25,23 +25,29 @@
     <div *ngFor="let gruppo of dirigentiFormArray.controls; let i = index" [formGroupName]="i" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
       <span style="min-width: 150px;">{{ dirigenti[i].nome }}</span>
 
-      <ng-container>
-        <mat-form-field appearance="fill" style="flex: 1;">
-          <mat-label>Tipo</mat-label>
-          <mat-select formControlName="tipo">
-            <mat-option *ngFor="let tipo of tipiStaffDirigente" [value]="tipo">
-              {{ getEtichetta(tipo) }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </ng-container>
+      <mat-form-field appearance="fill" style="flex: 1;">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipo">
+          <mat-option *ngFor="let tipo of tipiStaffDirigente" [value]="tipo">
+            {{ getEtichetta(tipo) }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button (click)="chiudi()">Annulla</button>
-  <button mat-raised-button color="primary" (click)="generaNote()" [disabled]="!formValido()">
+  <button mat-button (click)="chiudi()" [disabled]="loading">Annulla</button>
+  <button mat-raised-button color="primary" (click)="generaNote()" [disabled]="!formValido() || loading">
     Conferma
   </button>
 </mat-dialog-actions>
+
+<!-- Overlay di caricamento -->
+<div *ngIf="loading" class="global-overlay">
+  <div class="spinner-container">
+    <mat-spinner diameter="60" color="primary"></mat-spinner>
+    <p style="margin-top: 1rem;">Generazione Note in corso...</p>
+  </div>
+</div>
