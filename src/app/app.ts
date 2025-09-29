@@ -7,6 +7,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {AuthService} from './services/auth.service';
+import {NgIf} from '@angular/common';
 
 
 @Component({
@@ -19,7 +20,8 @@ import {AuthService} from './services/auth.service';
     MatButtonModule,
     MatMenuModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgIf
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -27,7 +29,12 @@ import {AuthService} from './services/auth.service';
 export class App {
   protected readonly title = signal('Futsal Montevarchi');
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {
+    this.isLoggedIn = this.auth.isAuthenticated();
+
+  }
+
+  isLoggedIn = false;
 
   logout() {
     this.auth.logout();           // rimuove il token
