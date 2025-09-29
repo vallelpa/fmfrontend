@@ -2,15 +2,15 @@ import { Routes } from '@angular/router';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { SquadraDetail } from './pages/squadra-detail/squadra-detail';
 import { CalciatoreDetail } from './pages/calciatore-detail/calciatore-detail';
-import {StaffDetail} from './pages/staff-detail/staff-detail';
-import {Login} from './pages/login/login';
-import {authGuard} from './auth.guard';
+import { StaffDetail } from './pages/staff-detail/staff-detail';
+import { Login } from './pages/login/login';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    redirectTo: '/dashboard' // <-- slash davanti
   },
   {
     path: 'login',
@@ -38,8 +38,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: '/dashboard' // <-- anche qui slash davanti
   }
 ];
-
-
